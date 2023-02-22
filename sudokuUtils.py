@@ -19,3 +19,4 @@ def checkCellConstraints(row,column,number,matrix):
 
 class Calls:
 	count = 0
+    
