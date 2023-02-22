@@ -20,7 +20,8 @@ def FogResolver(potential_cells_list, cells_candidates_list):
         for number in potential_cell[2]:
             contribution = 0
             for cell in cells_candidates_list:
-                contribution = contribution+len(set(potential_cell[2]).intersection(set(cell[2])))
+                if peers(potential_cell[0], cell[0]):
+                    contribution = contribution+len(set(potential_cell[2]).intersection(set(cell[2])))
             if contribution > max_contribution:
                 max_contribution = contribution
                 selected_cell = potential_cell
@@ -72,3 +73,5 @@ def solver(matrix):
             return True
         matrix[row][column] = 0
     return False
+
+print(peers([0,3],[1,2]))
