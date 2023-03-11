@@ -1,27 +1,21 @@
-from sudokuUtils import *
+from utilities import show, clean
 
-calls = Calls()
-
-def solver(matrix):
-	calls.count = calls.count+1
-	solved = True
-    # Looking for a cell containing 0
-	for i in range(0,9):
-		for j in range(0,9):
-			if matrix[i][j] == 0:
-				solved = False
-				row = i
-				column = j
-				break
-	if solved:
-		display(matrix)
-		print("Naive Backtracking - ", calls.count, "Recursions")
-		return True
-    # Trying to fill current cell to move forward / backtrack as required
-	for number in range(1, 10):
-		if checkCellConstraints(row, column, number, matrix):
-			matrix[row][column] = number
-			if solver(matrix):
-				return True
-			matrix[row][column] = 0
-	return False
+def solver(grid):
+    grid.recursions = grid.recursions+1
+    grid.solved = True
+    for position in grid.cells:
+        if not grid.cells[position].cellvalue:
+            grid.solved = False
+            break
+    if grid.solved:
+        show("Naive", grid)
+        return True
+    for number in grid.cells[position].candidates:
+        if grid.slomo:
+            show("Naive", grid)
+            clean(grid.slomo)
+        grid.cells[position].cellvalue = number
+        if solver(grid):
+            return True
+        grid.cells[position].cellvalue = 0
+    return False
