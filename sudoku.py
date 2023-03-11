@@ -14,12 +14,12 @@ from MRVPlus import solver as mps
 clues = randomClues()
 
 puzzle = Grid(clues)
-puzzle.slomo = 0
+puzzle.slomo = 0.01
 print("Sudoku puzzle:\n"+str(puzzle)+"\n"+"-"*50+"\nSolutions:")
 
-# grid = deepcopy(puzzle)
-# grid.starttime = time()
-# ns(grid)
+grid = deepcopy(puzzle)
+grid.starttime = time()
+ns(grid)
 
 grid = deepcopy(puzzle)
 grid.starttime = time()
